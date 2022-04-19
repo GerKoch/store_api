@@ -1,0 +1,14 @@
+.navContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(158, 166, 15, 0.815);
+    padding: 0.5rem;
+    box-shadow: 1px 2px 5px rgb(0,0,0,0.5);
+}
+
+.title{
+    color: black;
+    font-weight: bold;
+    margin-left: 10rem;
+}
