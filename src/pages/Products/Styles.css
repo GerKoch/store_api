@@ -2,13 +2,8 @@
   column-count: 3;
   margin: 0px 0px 0px 300px;
   background-color: rgb(245, 242, 242);
+}
  
-  }
-  @media only screen and (max-width: 600px) {
-    .prod {
-      column-count: 2;
-    }
-  }
 
 
 .container_input{

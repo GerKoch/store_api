@@ -1,14 +1,13 @@
-import { prettyDOM } from '@testing-library/react';
 import { useState, useEffect } from 'react';
 import CardProducts from '../CardProducts/CardProducts';
 import './Styles.css';
 
-const Products = () => {
+const Products = (agregarAlCarro) => {
 
     const api = `https://fakestoreapi.com/products`;
 
     const [products, setProducts] = useState([]);
-    const [busqueda, setBusqueda] = useState("");
+    const [search, setSearch] = useState("");
     const [prods, setProds] = useState([]);
 
 
@@ -24,18 +23,18 @@ const Products = () => {
     }, [])
 
     const handleChange = (e) => {
-        setBusqueda(e.target.value);
-        filtrar(e.target.value);
+        setSearch(e.target.value);
+        filtered(e.target.value);
         console.log(e.target.value);
     }
 
-    const filtrar = (terminoBusqueda) => {
-        const resultadoBusqueda = prods.filter(element => {
-            if(element.title.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())) {
+    const filtered = (searchterm) => {
+        const searchResult = prods.filter(element => {
+            if (element.title.toString().toLowerCase().includes(searchterm.toLowerCase())) {
                 return element;
             }
         });
-        setProducts(resultadoBusqueda);
+        setProducts(searchResult);
     }
 
 
@@ -44,7 +43,7 @@ const Products = () => {
             <div className="container_input">
                 <input className="input"
                     placeholder="Buscar"
-                    value={busqueda}
+                    value={search}
                     onChange={handleChange}
                 />
             </div>
@@ -56,6 +55,7 @@ const Products = () => {
                             image={prod.image}
                             title={prod.title}
                             price={prod.price}
+                            agregarAlCarro={agregarAlCarro}
                         />
                     )}
             </div>
