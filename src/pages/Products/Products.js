@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import CardProducts from '../CardProducts/CardProducts';
 import './Styles.css';
 
-const Products = (agregarAlCarro) => {
+const Products = () => {
 
     const api = `https://fakestoreapi.com/products`;
 
@@ -10,6 +10,7 @@ const Products = (agregarAlCarro) => {
     const [search, setSearch] = useState("");
     const [prods, setProds] = useState([]);
 
+    const [state, setState] = useState("");
 
     useEffect(() => {
         fetch(api)
@@ -21,6 +22,14 @@ const Products = (agregarAlCarro) => {
             })
             .catch(error => console.log(error));
     }, [])
+
+    const carro = [
+        // setProducts()
+    ];
+
+    const agregarAlCarro = (products) => {
+        console.log(products)
+    }
 
     const handleChange = (e) => {
         setSearch(e.target.value);
@@ -37,15 +46,16 @@ const Products = (agregarAlCarro) => {
         setProducts(searchResult);
     }
 
-
     return (
         <div>
             <div className="container_input">
-                <input className="input"
-                    placeholder="Buscar"
-                    value={search}
-                    onChange={handleChange}
-                />
+                <div>
+                    <input className="input"
+                        placeholder="Buscar"
+                        value={search}
+                        onChange={handleChange}
+                    />
+                </div>
             </div>
             <div className='prod'>
                 {products.length > 0 &&
