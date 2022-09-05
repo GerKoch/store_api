@@ -1,35 +1,32 @@
 import { useState, useEffect } from 'react';
-import CardProducts from '../CardProducts/CardProducts';
+import CardProducts from '../../components/CardProducts/CardProducts';
 import './Styles.css';
+
+
 
 const Products = () => {
 
     const api = `https://fakestoreapi.com/products`;
 
-    const [products, setProducts] = useState([]);
+    const [showproducts, setShowProducts] = useState([]);
     const [search, setSearch] = useState("");
     const [prods, setProds] = useState([]);
+    const [loading, setLoading] = useState(false);
 
-    const [state, setState] = useState("");
 
     useEffect(() => {
+        setLoading(true);
         fetch(api)
             .then(resp => resp.json())
             .then(resp => {
                 console.log(resp);
-                setProducts(resp);
+                setShowProducts(resp);
                 setProds(resp);
+                setLoading(false);
             })
             .catch(error => console.log(error));
     }, [])
 
-    const carro = [
-        // setProducts()
-    ];
-
-    const agregarAlCarro = (products) => {
-        console.log(products)
-    }
 
     const handleChange = (e) => {
         setSearch(e.target.value);
@@ -39,11 +36,23 @@ const Products = () => {
 
     const filtered = (searchterm) => {
         const searchResult = prods.filter(element => {
-            if (element.title.toString().toLowerCase().includes(searchterm.toLowerCase())) {
+            if (element.title
+                    .toString()
+                    .toLowerCase()
+                    .includes(searchterm.toLowerCase())
+            ) {
                 return element;
             }
         });
-        setProducts(searchResult);
+        setShowProducts(searchResult);
+    }
+
+    const [dataCart, setDataCart] = useState([]);
+
+    console.log("gerCart", dataCart);
+
+    const agregarAlCarro = (product) => {
+        setDataCart([...dataCart, product]);
     }
 
     return (
@@ -58,13 +67,16 @@ const Products = () => {
                 </div>
             </div>
             <div className='prod'>
-                {products.length > 0 &&
-                    products.map(prod =>
+                {loading && <p>loading...</p>}
+                {showproducts.length > 0 &&
+                    !loading &&
+                    showproducts.map(prod =>
                         <CardProducts
                             key={prod.id}
                             image={prod.image}
                             title={prod.title}
                             price={prod.price}
+                            data={prod}
                             agregarAlCarro={agregarAlCarro}
                         />
                     )}
