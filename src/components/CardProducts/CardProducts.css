@@ -1,26 +1,24 @@
-.container {
+.container{
     display: inline-block;
     width: 350px;
     border-radius: 5px;
     justify-content: center;
-    transition: box-shadow 0.2s ease;
-    margin: 40px 10px 0px 10px;
     background-color: #fff;
+    margin: 40px 10px 0px 10px;
     cursor: pointer;
+    transition: box-shadow 0.2 ease;
 }
 
-.container:hover {
-    box-shadow: 0px 3px 5px rgb(0,0,0,0.2);
+.container:hover{
+    box-shadow: 0px 3px 5px rgb(0, 0, 0, 0.2);
 }
 
-.container > img {
+.container > img{
     width: 150px;
-    margin: 10px;
     margin: 40px 10px 10px 100px;
 }
 
-.container > p {
+.container > p{
     margin: 10px 15px;
 }
-
 

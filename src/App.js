@@ -1,14 +1,22 @@
+import Products from "./pages/Products";
 import Navbar from "./components/Navbar/Navbar";
-import Products from "./pages/Products/Products";
-import Carro from './components/Carro/Carro';
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ShoppingCart } from "./components/ShoppingCart/ShoppingCart";
+import { ShoppingCartProvider } from "./components/Contexts/ShoppingCartContext";
 
 function App() {
-  return(
-    <div>
-      <Navbar /> 
-   
-      <Products />
-    </div>
+  return (
+    <ShoppingCartProvider>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Products />} />
+          <Route path="/cart" element={<ShoppingCart />} />
+        </Routes>
+      </Router>
+    </ShoppingCartProvider>
+
   )
 }
 
